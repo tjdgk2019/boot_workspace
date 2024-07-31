@@ -1,0 +1,7 @@
+package com.kh.house.java.chap02.drink;
+
+import com.kh.house.java.chap02.strategy.MenuStrategy;
+
+public class Beer implements DrinkStrategy{
+
+}

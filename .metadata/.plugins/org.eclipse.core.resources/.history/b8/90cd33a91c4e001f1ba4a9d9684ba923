@@ -1,0 +1,8 @@
+package com.kh.house.java.chap02.brand;
+
+import com.kh.house.java.chap02.store.HamburgerStore;
+import com.kh.house.java.chap02.strategy.MenuStrategy;
+
+public class Macdonaldo extends HamburgerStore implements MenuStrategy{
+
+}

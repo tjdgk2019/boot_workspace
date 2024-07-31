@@ -1,0 +1,8 @@
+package com.kh.house.product.model.vo;
+
+public class Attachment {
+	private int fileNo;
+	private int refHouseNo;
+	private String originName;
+	private String changeName;
+}

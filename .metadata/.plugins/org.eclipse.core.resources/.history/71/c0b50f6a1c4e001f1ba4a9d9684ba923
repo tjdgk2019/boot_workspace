@@ -1,0 +1,13 @@
+package com.kh.house.java.chap02.brand;
+
+import com.kh.house.java.chap02.store.HamburgerStore;
+import com.kh.house.java.chap02.strategy.MenuStrategy;
+
+public class Burgerking extends HamburgerStore implements MenuStrategy{
+
+	public Burgerking(String menu) {
+		super(menu);
+		// TODO Auto-generated constructor stub
+	}
+	
+}

@@ -1,0 +1,10 @@
+package com.kh.house.java.brand;
+
+public class Burgerking {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

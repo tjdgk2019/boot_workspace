@@ -1,0 +1,11 @@
+package com.kh.house.product.model.vo;
+
+import java.time.LocalDateTime;
+
+public class Product {
+	private int houseNo;
+	private String title;
+	private String rateCount;
+	private String type;
+	private LocalDateTime createDate;
+}

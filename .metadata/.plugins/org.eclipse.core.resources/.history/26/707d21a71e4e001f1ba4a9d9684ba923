@@ -1,0 +1,11 @@
+package com.kh.house.java.chap02;
+
+import com.kh.house.java.chap02.brand.Burgerking;
+import com.kh.house.java.chap02.drink.Beer;
+
+public class Run {
+	public static void main(String[] args) {
+		OrderApp oa = new OrderApp(new Burgerking("와퍼"),new Beer());
+		oa.order();
+	}
+}

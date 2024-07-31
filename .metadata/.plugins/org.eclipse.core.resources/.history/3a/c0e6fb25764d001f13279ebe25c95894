@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.house.product.model.dao.ProductMapper">
+
+	<resultMap type="Product" id="productResultSet">
+		<id column="PRODUCT_NO" 		property="productNo" />
+		<result column="TITLE" 			property="title" />
+		<result column="RATE_COUNT" 	property="rateCount" />
+		<result column="TYPE" 			property="type" />
+		<result column="CREATE_DATE" 	property="createDate" />
+		<association property="attachment" resultMap="attachmentResultSet" />
+	</resultMap>
+	
+	<resultMap type="Attachment" id="attachmentResultSet">
+		<id column="FILE_NO" 		 property="fileNo" />
+		<result column="CHANGE_NAME" property="changeName" />
+		<result column="ORIGIN_NAME" property="originName" />
+	</resultMap>
+	
+	<select id="findAll" parameterType="String" resultType="Product" resultMap="productResultSet">
+		SELECT
+				PRODUCT_NO,
+				TITLE,
+				RATE_COUNT,
+				TYPE,
+				CREATE_DATE
+				ORIGIN_NAME,
+				CHANGE_NAME
+		  FROM
+		  		TB_PRODUCT
+		  JOIN
+		  		TB_FILE ON (PRODUCt_NO = REF_PRODUCT_NO)
+		 WHERE
+		 		TYPE = #{type}
+		 ORDER
+		    BY
+		    	CREATE_DATE DESC
+	</select>
+	
+	<insert id="saveProduct" parameterType="Product">
+		INSERT
+		  INTO
+		  		TB_PRODUCT
+		  		(
+		  		PRODUCT_NO,
+		  		TITLE,
+		  		RATE_COUNT,
+		  		TYPE,
+		  		CREATE_DATE
+		  		)
+		 VALUES
+		 		(
+		 		SEQ_PRODUCT.NEXTVAL,
+		 		#{title},
+		 		#{rateCount},
+		 		#{type},
+		 		#{createDate}
+		 		)
+		 <selectKey resultType="_int" order="AFTER" keyProperty="productNo">
+		 	SELECT SEQ_PRODUCT.CURRVAL FROM DUAL 
+		 </selectKey>
+	</insert>
+
+
+	<insert id="saveFile" parameterType="Attachment">
+		INSERT 
+		  INTO
+		  		TB_FILE
+		  		(
+		  		FILE_NO,
+		  		REF_PRODUCT_NO,
+		  		ORIGIN_NAME,
+		  		CHANGE_NAME
+		  		)
+		 VALUES
+		 		(
+		 		SEQ_FILE.NEXTVAL,
+		 		#{refProductNo},
+		 		#{originName},
+		 		#{changeName}
+		 		)
+	</insert>
+	
+	
+	<update id="setProduct" parameterType="Product">
+		UPDATE
+				TB_PRODUCT
+		   SET
+		   		TITLE = #{title},
+		   		RATE_COUNT = #{rateCount}
+		 WHERE
+		 		PRODUCT_NO = #{productNo}
+	</update>
+	
+	
+	<update id="setFile" parameterType="Attachment">
+		UPDATE
+				TB_FILE
+		   SET
+		   		ORIGIN_NAME = #{originName},
+		   		CHANGE_NAME = #{changeName}
+		 WHERE
+		 		REF_PRODUCT_NO = #{refProductNo}
+	</update>
+</mapper>

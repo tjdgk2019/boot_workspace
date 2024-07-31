@@ -1,0 +1,42 @@
+package com.kh.house.product;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.web.servlet.MockMvc;
+
+import com.kh.house.product.model.vo.Product;
+
+import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
+
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
+@AutoConfigureMockMvc
+@Slf4j
+@Transactional
+public class ProductUpdateTest {
+	
+	@Autowired
+	MockMvc mvc;
+	
+	@Test
+	public void updateTest() {
+		//given / when / then
+		// 준비  /  실행 /  검증
+		
+		Product product = Product.builder()
+								 .houseNo(4)
+								 .rateCount("테스트 후기")
+								 .title("테스트 한옥")
+								 .build();
+		
+	}
+	
+	
+	
+	
+}
